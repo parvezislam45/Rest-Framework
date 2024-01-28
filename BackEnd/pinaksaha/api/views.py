@@ -5,6 +5,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import filters
+from rest_framework import generics
 
 
 class DataList(APIView):
@@ -47,3 +49,10 @@ class DataUpdateDelete(APIView):
         snippet = self.get_object(pk)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+class ProductSearchAPIView(generics.ListAPIView):
+    queryset = DataStoreModel.objects.all()
+    serializer_class = DataStoreSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'description']

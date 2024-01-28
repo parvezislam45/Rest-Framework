@@ -11,4 +11,5 @@ router.register(r'infos', views.DataList, basename='info')
 urlpatterns = [
     path('infos/',views.DataList.as_view()),
     path('infos/<int:pk>/', views.DataUpdateDelete.as_view()),
+    path('infos/search/', views.ProductSearchAPIView.as_view(), name='product-search'),
 ]

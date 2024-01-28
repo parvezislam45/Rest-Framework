@@ -50,6 +50,7 @@ def update_product_api(request, product_id):
 
 api_view(['DELETE'])
 def delete_product_api(request, product_id):
+    print(product_id)
     try:
         product = Item.objects.get(pk=product_id)
     except Item.DoesNotExist:
